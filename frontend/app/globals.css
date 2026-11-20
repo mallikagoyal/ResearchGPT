@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core palette — indigo/violet accent on warm white */
+    --background: 220 20% 98%;
+    --foreground: 224 32% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 32% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 32% 12%;
+
+    --primary: 234 89% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 234 20% 94%;
+    --secondary-foreground: 234 40% 30%;
+
+    --muted: 220 14% 95%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 234 60% 96%;
+    --accent-foreground: 234 60% 35%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 234 89% 60%;
+
+    --radius: 0.625rem;
+
+    /* Sidebar */
+    --sidebar: 224 30% 97%;
+    --sidebar-border: 220 13% 91%;
+  }
+
+  .dark {
+    --background: 224 32% 8%;
+    --foreground: 220 20% 94%;
+
+    --card: 224 30% 11%;
+    --card-foreground: 220 20% 94%;
+
+    --popover: 224 30% 11%;
+    --popover-foreground: 220 20% 94%;
+
+    --primary: 234 89% 66%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 234 20% 18%;
+    --secondary-foreground: 234 40% 80%;
+
+    --muted: 224 24% 15%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 234 40% 20%;
+    --accent-foreground: 234 60% 80%;
+
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 224 20% 18%;
+    --input: 224 20% 18%;
+    --ring: 234 89% 66%;
+
+    --sidebar: 224 32% 9%;
+    --sidebar-border: 224 20% 16%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.4);
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism surface */
+  .glass {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.6);
+  }
+
+  /* Subtle inner glow for active states */
+  .glow-primary {
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.15), 0 1px 2px rgba(0,0,0,0.06);
+  }
+
+  /* Subtle text shimmer for the brand wordmark */
+  .brand-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(234 89% 75%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animated gradient for the logo badge */
+  .logo-gradient {
+    background: linear-gradient(135deg, hsl(234 89% 55%), hsl(258 89% 62%));
+  }
+
+  /* Soft card shadow */
+  .card-shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+  }
+
+  .card-shadow-md {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.06);
+  }
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes typing-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.2s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.15s ease-out both;
+}
+
+.typing-dot {
+  animation: typing-bounce 1s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Prose overrides for the chat messages */
+.prose {
+  --tw-prose-body: hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-code: hsl(var(--primary));
+  --tw-prose-pre-bg: hsl(var(--muted));
+  --tw-prose-bullets: hsl(var(--muted-foreground));
+  --tw-prose-counters: hsl(var(--muted-foreground));
+  --tw-prose-links: hsl(var(--primary));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--muted-foreground));
+  --tw-prose-quote-borders: hsl(var(--border));
+}
